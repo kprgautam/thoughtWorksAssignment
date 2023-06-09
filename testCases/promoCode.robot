@@ -8,7 +8,7 @@ Test Teardown  setupTeardown.TestTeardown
 
 *** Test Cases ***
 Verify Promotional Code format
-    Promotional codes are in the format XX9-XXX-999.                AB9-SRH-009
+    Promotional codes are in the format XX9-XXX-999.                OO0-OOO-000
     First digit indicates the discount percentage                   AB9-SRH-009
 
 Verify invalid code message is as per design

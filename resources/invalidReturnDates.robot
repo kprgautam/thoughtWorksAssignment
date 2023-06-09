@@ -6,10 +6,7 @@ ${departurelist}        //select[@id='departing']
 ${departureText}        //label[normalize-space()='Departing']
 ${returnlist}           //select[@id='returning']
 ${returnText}           //label[normalize-space()='Returning']
-${month1}               July
-${month2}               December
 ${deplistval}           //select[@id='departing']//option[@value][normalize-space()]
-${frequency}            3
 ${i}
 ${back}                 //a[normalize-space()='Back']
 ${search}               //input[@value='Search']
@@ -18,6 +15,7 @@ ${seatsavail}           //p[normalize-space()='Seats available!']
 ${book}                 //p[normalize-space()='Call now on 0800 MARSAIR to book!']
 ${seatunavail}          //p[normalize-space()='Sorry, there are no more seats available.']
 ${invaliddate}          //p[contains(text(),'Unfortunately, this schedule is not possible. Plea')]
+${text}                 Unfortunately, this schedule is not possible. Please try again.
 
 *** Keywords ***
 
@@ -35,8 +33,9 @@ ${invaliddate}          //p[contains(text(),'Unfortunately, this schedule is not
                 CLICK ELEMENT       //select[@id='returning']//option[@value][${i}]
                 CLICK ELEMENT       ${search}
 
-                ${invalid}=       RUN KEYWORD AND RETURN STATUS  ELEMENT TEXT SHOULD BE     ${invaliddate}      Unfortunately, this schedule is not possible. Please try again.
-                RUN KEYWORD IF  ${invalid}     LOG TO CONSOLE      Return date is less than 1 year for flights between ${departtext} and ${rettext}.
+                ${invalid}=       RUN KEYWORD AND RETURN STATUS  ELEMENT TEXT SHOULD BE     ${invaliddate}    ${text}
+                RUN KEYWORD IF  ${invalid}
+                ...     LOG TO CONSOLE      Return date is less than 1 year for flights between ${departtext} and ${rettext}.
                 CLICK ELEMENT   ${back}
 
             END

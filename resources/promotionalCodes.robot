@@ -3,7 +3,7 @@ Library         Selenium2Library
 
 
 *** Variables ***
-${regexp}               [A-Z]{2}\[0-9]{1}-[A-Z]{3}-[0-9]{3}
+${regexp}               [A-Z]{2}\[1-9]{1}-[A-Z]{3}-[0-9]{3}
 ${modulus}              10
 ${departure}            //select[@id='departing']
 ${departval}            //select[@id='departing']//option[@value][normalize-space()][2]
@@ -11,7 +11,6 @@ ${return}               //select[@id='returning']
 ${returnval}            //select[@id='returning']//option[@value][normalize-space()][7]
 ${search}               //input[@value='Search']
 ${promocode}            //input[@id='promotional_code']
-
 
 *** Keywords ***
 Promotional codes are in the format XX9-XXX-999.

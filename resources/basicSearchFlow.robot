@@ -50,7 +50,7 @@ Verify departure and return have flights are present for every 6 months.
     SHOULD CONTAIN X TIMES      ${deplist}      ${month2}      ${frequency}
 
     ${retlist}=    GET TEXT             ${returnlist}
-    SHOULD CONTAIN X TIMES      ${retlist}      ${month1}      ${frequency}
+    SHOULD CONTAIN X TIMES      ${retlist}      ${month1}       ${frequency}
     SHOULD CONTAIN X TIMES      ${retlist}      ${month2}       ${frequency}
 
     LOG TO CONSOLE     Both Departure and Return flights are available in ${month1} and ${month2}, once every 6 months for the next 2 years.
@@ -98,8 +98,10 @@ If there are seats, display “Seats available! Call 0800 MARSAIR to book!”
 
                     ${avail}=       RUN KEYWORD AND RETURN STATUS  ELEMENT TEXT SHOULD BE     ${seatsavail}     Seats available!
                     ${booktext}=    RUN KEYWORD AND RETURN STATUS  ELEMENT TEXT SHOULD BE     ${book}           Call now on 0800 MARSAIR to book!
-                    RUN KEYWORD IF  ${avail}        LOG TO CONSOLE      Congratulations !!!!
-                    RUN KEYWORD IF  ${booktext}     LOG TO CONSOLE      Seats available between flights ${departtext} and ${rettext}.
+                    RUN KEYWORD IF  ${avail}
+                    ...     LOG TO CONSOLE      Congratulations !!!!
+                    RUN KEYWORD IF  ${booktext}
+                    ...     LOG TO CONSOLE      Seats available between flights ${departtext} and ${rettext}.
 
                 CLICK ELEMENT   ${back}
 
